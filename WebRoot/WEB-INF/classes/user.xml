@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+  
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"   
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="User">
+	<typeAlias alias="User" type="domain.User" />
+	<resultMap id="user" class="User">
+		<result property="username" column="user_name" />
+		<result property="password" column="user_password" />
+		<result property="studentnum" column="student_num" />
+		<result property="classnum" column="class_num" />
+		<result property="usertype" column="type" />
+
+	</resultMap>
+	<select id="getAllUser" resultClass="User" parameterClass="string">
+		SELECT * FROM user    
+    </select>
+	<select id="checkUser" parameterClass="User" resultClass="User">
+		<!--	表名称不要用user-->
+		SELECT
+		* FROM
+		[sq_zhuilu].[dbo].[user] where
+		user_name = #username# and
+		user_password=#password#
+	</select>
+
+	<!--	<select id="selectUserByUsername" parameterClass="string"-->
+	<!--		resultClass="User">-->
+	<!--		select-->
+	<!--		USERNAME,-->
+	<!--		PASSWORD-->
+	<!--		from user-->
+	<!--		where username =-->
+	<!--		#username#-->
+	<!--  </select>-->
+	<insert id="insertUser" parameterClass="User">
+		insert into
+		[sq_zhuilu].[dbo].[user] (
+		USERNAME,
+		PASSWORD)
+		values (
+		#username#,
+		#password#
+		)
+	  </insert>
+	<!--	<update id="updateUser" parameterClass="User">-->
+	<!--		update user set-->
+	<!--		PASSWORD =-->
+	<!--		#password#-->
+	<!--		where-->
+	<!--		USERNAME = #username#-->
+	<!--  </update>-->
+
+	<!--	<delete id="deleteUserById" parameterClass="string">-->
+	<!--		delete from user-->
+	<!--		where USERNAME = #username#-->
+	<!--  </delete>-->
+
+</sqlMap>
+

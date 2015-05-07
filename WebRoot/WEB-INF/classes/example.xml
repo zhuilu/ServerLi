@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+  
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"   
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Message">
+	<typeAlias alias="Message" type="domain.Message" />
+	<resultMap id="MessageResult" class="Message">
+		<result property="phone" column="PHONE" />
+		<result property="latitude" column="LATITUDE" />
+		<result property="longitude" column="LONGITUDE" />
+		<result property="mac" column="MAC" />
+		<result property="time" column="TIME" />
+	</resultMap>
+	<select id="getAllMessage" resultClass="Message" parameterClass="string">
+		SELECT * FROM test    
+    </select>
+	<select id="selectMessageByUsername" parameterClass="string"
+		resultClass="Message">
+		select
+		username,
+		password
+		from test
+		where username =
+		#phone#
+	</select>
+	<insert id="insertMessage" parameterClass="Message">
+		insert into MESSAGE (
+		PHONE,
+		LATITUDE,
+		LONGITUDE,
+		MAC,
+		TIME)
+		values (
+		#phone#, #latitude#,
+		#longitude#, #mac#, #time#)
+  </insert>
+	<update id="updateMessage" parameterClass="Message">
+		update test set
+		password =
+		#phone#
+		where
+		username = #phone#
+  </update>
+
+	<delete id="deleteMessageById" parameterClass="string">
+		delete from test
+		where username = #phone#
+  </delete>
+
+</sqlMap>
+

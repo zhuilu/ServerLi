@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+  
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"   
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="User">
+	<typeAlias alias="Dict" type="domain.Dict" />
+	<resultMap id="dict" class="Dict">
+		<result property="user_id" column="user_id" />
+		<result property="word_id" column="word_id" />
+		<result property="word" column="word" />
+		<result property="uk_phonetic" column="uk_phonetic" />
+		<result property="us_phonetic" column="us_phonetic" />
+		<result property="word_time" column="word_time" />
+	</resultMap>
+	<select id="getAllDict" resultClass="Dict" parameterClass="string">
+		SELECT * FROM [sq_zhuilu].[dbo].[dict]    
+    </select>
+	<select id="checkDict" parameterClass="Dict" resultClass="Dict">
+		<!--	表名称不要用Dict-->
+		SELECT
+		* FROM
+		[sq_zhuilu].[dbo].[dict] where
+		Dict_name = #Dictname# and
+		Dict_password=#password#
+	</select>
+
+
+	<insert id="insertDict" parameterClass="Dict">
+		insert into
+		[sq_zhuilu].[dbo].[dict] (
+		user_id,
+		word_id,
+		word,
+		uk_phonetic,
+		us_phonetic,
+		word_time
+		)
+		values (
+		#user_id#,
+		#word_id#,
+		#word#,
+		#uk_phonetic#,
+		#us_phonetic#,
+		#word_time#
+		)
+	  </insert>
+	<!--		<update id="updateDict" parameterClass="Dict">-->
+	<!--			update Dict set-->
+	<!--			 =-->
+	<!--			## and 	 =-->
+	<!--			## and 	 =-->
+	<!--			## and 	 =-->
+	<!--			## and 	 =-->
+	<!--			## and -->
+	<!--			where-->
+	<!--			DictNAME = #Dictname#-->
+	<!--	  </update>-->
+
+	<!--	<delete id="deleteDictById" parameterClass="string">-->
+	<!--		delete from Dict-->
+	<!--		where DictNAME = #Dictname#-->
+	<!--  </delete>-->
+
+</sqlMap>
+
