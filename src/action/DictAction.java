@@ -25,7 +25,7 @@ import domain.User;
 public class DictAction extends ActionSupport {
 	private static DictAction dictAction;
 	static DictDao dao;
-
+//	泰尔精细化工有限公司
 	public DictAction() {
 	}
 
