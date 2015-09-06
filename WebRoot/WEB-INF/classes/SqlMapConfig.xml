@@ -13,5 +13,5 @@
 		</dataSource>
 	</transactionManager>
 	<sqlMap resource="user.xml" />
-	<!--添加如	<sqlMap resource="sign.xml" />-->
+
 </sqlMapConfig>   

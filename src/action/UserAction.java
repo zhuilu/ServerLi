@@ -2,60 +2,36 @@ package action;
 
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import net.sf.json.JSONObject;
-
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.dispatcher.mapper.ActionMapping;
-
-import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-
 import dao.UserDao;
-import dao.UserDaoImpl;
 import domain.User;
 
 public class UserAction extends ActionSupport {
-	private static UserAction userAction;
-	static UserDao dao;
+	public UserDao dao;
+	public String name = "";
+	public String password = "";
 
 	public UserAction() {
 	}
 
-	public static UserAction getInstance(UserDao userDao) {
-		if (userAction != null) {
-		} else {
-			userAction = new UserAction();
-			dao = userDao;
-		}
-		return userAction;
-	}
-
-	public void login(Map<String, String[]> params, InvokeResponse response) {
-		System.out.println("UserAction login");
+	public String login() {
+		System.out.println("UserAction login=" + name + "     " + password);
 		User user = new User();
-		String name = params.get("username")[0];
-		String pass = params.get("password")[0];
 		user.setUsername(name);
-		user.setPassword(pass);
+		user.setPassword(password);
 		try {
 			if (dao.checkUser(user)) {
-				response.setFlag(true);
-				response.setMessage("登录成功");
+				return SUCCESS;
 			} else {
-				response.setFlag(false);
-				response.setMessage("登录失败");
+				return INPUT;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			response.setFlag(false);
-			response.setMessage("登录失败");
+			return INPUT;
 		}
+
 	}
 
 	public List<User> queryall() {
@@ -86,8 +62,27 @@ public class UserAction extends ActionSupport {
 		return false;
 	}
 
-	public static class Collumns {
-		private static String username = "username";
-		private static String password = "password";
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public UserDao getDao() {
+		return dao;
+	}
+
+	public void setDao(UserDao dao) {
+		this.dao = dao;
 	}
 }

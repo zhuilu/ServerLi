@@ -7,7 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type"
 			content="text/html; charset=ISO-8859-1">
-		<title>列表，上传文件页面</title>
+		<title>泰尔新材料上传文件页面</title>
 
 		<script type="text/javascript">
 	function addMore() {
@@ -46,7 +46,6 @@
 						</td>
 						<td align="center">
 							<s:a href="download.action?fileName=%{id}">点击下载</s:a>
-
 						</td>
 				</s:iterator>
 			</tr>
@@ -63,7 +62,7 @@
 						选择文件:
 					</td>
 					<td id="more">
-						<s:file name="file"></s:file>
+						<s:file name="file" ></s:file>
 						<input type="button" value="上传更多..." onclick=
 	addMore();
 >

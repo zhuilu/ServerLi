@@ -16,12 +16,10 @@
 
 	<bean name="UserDao" class="dao.UserDaoImpl" />
 	<bean name="dictDao" class="dao.DictDaoImpl" />
-	<!--添加如<bean name="SignDao" class="dao.SignDaoImpl" />-->
 
 
-	<bean name="Invoke" class="action.InvokeAction">
+	<bean name="User" class="action.UserAction">
 		<property name="dao" ref="UserDao" />
-		<property name="dict" ref="dictDao" />
-		<!--添加如<property name="sign" ref="SignDao" />-->
+
 	</bean>
 </beans>

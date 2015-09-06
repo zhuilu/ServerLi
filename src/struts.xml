@@ -8,32 +8,41 @@
 	<constant name="struts.i18n.encoding" value="gbk"></constant>
 	<constant name="struts.multipart.saveDir" value="/upload"></constant>
 	<package name="struts2-spring" extends="struts-default">
-		<action name="invoke" class="Invoke" method="invokeMethod">
+
+
+		<action name="login" class="User" method="login">
+			<result name="success" type="redirectAction">
+				<param name="actionName">filelist</param>
+
+			</result>
+
+			<result name="input">/login.jsp</result>
 		</action>
 
 		<action name="filelist" class="action.FileListAction" method="fileList">
 			<result name="success">
-				/filelist.jsp</result>
+				/filelist.jsp
+			</result>
 			<result name="input">/filelist.jsp</result>
+
+		</action>
+		<!-- 详情 -->
+		<action name="showdetail" class="action.ShowAction" method="showdetail">
+			<result name="success">
+				/flexindex.jsp
+			</result>
+
 		</action>
 		<action name="upload" class="action.UploadAction" method="fileUpload">
-			<result name="success">/uploadsuccess.jsp</result>
-			<result name="input">/uploadsuccess.jsp</result>
-<!--			<interceptor-ref name="fileUpload">-->
-<!--				<param name="maximumSize">4096000</param>-->
-<!--				-->
-<!--					<param name="allowedTypes">application/vnd.ms-powerpoint</param>-->
-<!--				-->
-<!--			</interceptor-ref>-->
-<!--			<interceptor-ref name="defaultStack"></interceptor-ref>-->
+			<result type="redirectAction">
+				<param name="actionName">filelist</param>
+			</result>
+			<result name="input">/filelist.jsp</result>
 		</action>
 
 		<action name="download" class="action.DownloadAction">
 			<result name="success" type="stream">
 				<param name="contentType">application/vnd.ms-powerpoint</param>
-				<!--
-					<param name="contentDisposition">filename="Struts2.ppt"</param>
-				-->
 				<param name="inputName">downloadFile</param>
 			</result>
 		</action>
