@@ -31,7 +31,7 @@ body {
 				var fileURL = "upload/" + $("#name").val();
 				var filenumber = $("#number").val();
 
-				var fpr = new FlexPaperViewer('flexpaper/FlexPaperViewerOk',
+				var fpr = new FlexPaperViewer('flexpaper/FlexPaperViewer',
 						'viewerPlaceHolder', {
 							config : {
 								SwfFile : "{" + fileURL + "[*,1].swf,"
